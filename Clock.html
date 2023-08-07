@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+       body{
+        background-color: black;
+       } 
+       .clock{
+        position: absolute;
+        color:lime;
+        top: 50%;
+        left:50%;
+        transform: translateX(-50%) translateY(-50%);
+        font-size:500%;
+        font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        letter-spacing: 0.2em;
+       }
+
+    </style>
+</head>
+<body>
+    <div id="Digital" class="clock"></div>
+    <script type="text/javascript">
+    function showtime(){
+        var date = new Date(); // To get date by Date Method
+        var hour = date.getHours(); // To get hours
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        var session = "AM";
+
+        if(hour==0)
+        {
+            hour = 12;// This is 12 Hour format.
+        }
+        if(hour>12)
+        {
+            hour = hour-12; // Become 1hr Format.
+            session = "PM";
+        }
+        // Method 1
+        /*
+        if(hour<10){
+            hour = "0"+hour;
+        }
+        if(min<10){
+            min = "0"+min;
+        }
+        if(sec<10){
+            sec = "0"+sec;
+        }*/
+        // Method 2
+        hour = (hour<10)?"0"+hour:hour;
+        min = (min<10)?"0"+min:min;
+        sec = (sec<10)?"0"+sec:sec;
+
+         document.getElementById("Digital").innerHTML = hour + ":" + min + ":" + sec + ":" + session;
+
+        // This funtion helps to make digital clock we clock run without reloading a page;
+        setTimeout(showtime,1000); 
+    }
+    showtime();
+    </script>
+</body>
+</html>
